@@ -16,7 +16,7 @@ class YoutubeFrameVideo extends Component{
         return(
             <div class="video-frame " style={{height:'auto'}}>
                 <ResponsiveEmbed aspectRatio="16by9">
-                    <iframe src="" width="100%" ></iframe>
+                    <iframe title="none" src="" width="100%" ></iframe>
                 </ResponsiveEmbed>
             </div>
         )

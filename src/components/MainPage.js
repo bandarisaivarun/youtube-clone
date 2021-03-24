@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Col,Row} from 'reactstrap';
 import YoutubeFrameVideo from './YoutubeMainFrame';
-
+import YoutubeSearchList from './YoutubeSearchList';
 
 
 class MainPage extends React.Component{
@@ -18,23 +18,7 @@ class MainPage extends React.Component{
                               <YoutubeFrameVideo ></YoutubeFrameVideo>
                         </Col>
                         <Col lg={4} md={11} className="m-lg-3 m-md-3 m-sm-3">
-                        <div class="video-lists ">
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                        </div>
+                            <YoutubeSearchList items={this.props.item} />
                         </Col>
                         </Row>
                        
