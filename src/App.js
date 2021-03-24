@@ -1,14 +1,19 @@
-import React, { Fragment } from 'react';
+
+import React,{Fragment} from 'react';
 import MainPage from './components/MainPage';
-import "./App.css";
+import'bootstrap/dist/css/bootstrap.css';
+import Header from './components/Header';
+
+import './components/MainPage.css';
 
 class App extends React.Component{
    render() {
      
     return(
-
-        <MainPage />
-      
+       <Fragment>
+            <Header /> 
+            <MainPage />
+        </Fragment>
  
          
     )
