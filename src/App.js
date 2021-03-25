@@ -11,16 +11,16 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-         searchItem:''
+         searchName:''
     }
-    this.searchItem=this.searchItem.bind(this);
+    this.search=this.search.bind(this);
   }
 
-   searchItem(search){
-     if(search!==''){
-      this.setState({searchItem:search}) ;
-      console.log(this.state.searchItem);
-     }
+   search(item){
+     console.log('app entered');
+     this.setState({searchName:item});
+     console.log(this.state.searchName);
+     
       
    }
   
@@ -28,8 +28,8 @@ class App extends React.Component{
      
     return(
        <Fragment>
-            <Header searchItem={this.searchItem} /> 
-            <MainPage item={this.state.searchItem}/>
+            <Header search={this.search} searchName={this.state.searchName} /> 
+            <MainPage item={this.state.searchName}/>
         </Fragment>
  
          

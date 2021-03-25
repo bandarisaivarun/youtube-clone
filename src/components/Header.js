@@ -12,17 +12,22 @@ class Header extends React.Component{
             searchItemName:''
         }
        this.onSubmitForm=this.onSubmitForm.bind(this);
-       this.handleInput=this.handleInput.bind(this);
+       this.searchInput=this.searchInput.bind(this);
     }
     
-    handleInput(event){
-        event.preventDefault();
+    searchInput=(event)=>{
+        //event.preventDefault();
+        
         this.setState({searchItemName:event.target.value});
-        console.log(this.state.searchItemName);
-    }
+        // if(this.state.searchItemName!==''){
+        
+        // }
+    };
      onSubmitForm(event){
          event.preventDefault();
-         this.props.searchItem(this.state.searchItemName);
+         console.log(this.state.searchItemName);
+        
+        this.props.search(this.state.searchItemName);
          
     }
       render(){
@@ -38,10 +43,10 @@ class Header extends React.Component{
             </div>
              
             <div class="search-box col-lg-5 col-md-4 col-sm-6" >
-                <Form onSubmit={(e)=>this.onSubmitForm(e)}>
+                <Form onSubmit={(values)=>this.onSubmitForm(values)}>
                     <Row class="align-items-center mt-3">
                         <Col lg={9} sm={9} xs={6} class="align-items-center"> 
-                            <FormControl onChange={(e)=>this.handleInput(e)} />   
+                            <FormControl  onChange={this.searchInput} />   
                         </Col>  
                         <Button ><AiOutlineSearch/></Button>  
                     </Row>
