@@ -2,45 +2,13 @@ import React from 'react';
 import {Col,Row} from 'reactstrap';
 import YoutubeFrameVideo from './YoutubeMainFrame';
 import YoutubeSearchList from './YoutubeSearchList';
-import {request} from '../api/api';
+
 
 class MainPage extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            // users:[],
-            // isLoading:true,
-            // err:null
-            user:''
-        }
-    this.searchQuery=this.searchQuery.bind(this);
- }
-    searchQuery(){
-        console.log('searchQuery enterd');
-          this.setState({user: this.props.item});
-          const r=this.state.user;
-           const res= request.get(
-                   'search',
-                    { params:{
-                       part:'snippet',
-                       maxResults:5,
-                       key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
-                       q:{r}
-                   }
-               }    
-                
-           )
-           .then(response => {return response.data.items;})
-           .catch(err=>{
-              this.setState({err:err});
-           })
-           console.log(res);
-           console.log(this.state.err);
-    }
+    
+    
       render(){
-        console.log('mainpage');
-        console.log(this.props.item);
-         this.searchQuery();
+        console.log('main render');
           return(
                 <div className="conatiner">
                 

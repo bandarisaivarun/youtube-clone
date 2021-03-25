@@ -31,6 +31,7 @@ class Header extends React.Component{
          
     }
       render(){
+        console.log('header render');
           return(
             <div class="header row">
 

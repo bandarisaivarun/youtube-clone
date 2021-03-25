@@ -13,8 +13,9 @@ class YoutubeSearchList extends React.Component{
          return(
              
             <div class="video-lists ">
+
                 <div>
-                    <iframe title="" src="" ></iframe>
+                    <iframe title="" src="" width='100%' ></iframe>
                 </div>
                 
             </div>

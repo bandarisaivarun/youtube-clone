@@ -5,30 +5,52 @@ import'bootstrap/dist/css/bootstrap.css';
 import Header from './components/Header';
 
 import './components/MainPage.css';
-
+import {request} from './api/api';
 class App extends React.Component{
   
   constructor(props){
     super(props);
     this.state={
-         searchName:''
+         searchName:'',
+         err:null
     }
-    this.search=this.search.bind(this);
+    this.searchQuery=this.searchQuery.bind(this);
+    this.searchBarResult=this.searchBarResult.bind(this);
   }
-
-   search(item){
-     console.log('app entered');
-     this.setState({searchName:item});
-     console.log(this.state.searchName);
-     
+  searchBarResult(resQuery){
+    this.setState({searchName:resQuery});
+    this.searchQuery(resQuery);
+  }
+  searchQuery(result){
+    console.log('searchQuery enterd');
       
-   }
+      
+       const res=request.get(
+               'search',
+                { params:{
+                   part:'snippet',
+                   maxResults:5,
+                   //key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
+                   q:result
+               }
+           }    
+            
+       )
+       .then(response => {return response;})
+       .catch(err=>{
+          return err;
+       })
+       console.log(res);
+       //console.log(this.state.err);
+}
+
   
    render() {
-     
+     console.log('app render');
     return(
        <Fragment>
-            <Header search={this.search} searchName={this.state.searchName} /> 
+            <Header search={this.searchBarResult}  /> 
+            <hr />
             <MainPage item={this.state.searchName}/>
         </Fragment>
  

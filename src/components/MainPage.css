@@ -53,3 +53,8 @@
 .video-lists{
     border: 0.1em solid;
 }
+
+.video-lists> div{
+  
+   width:50%;
+}
