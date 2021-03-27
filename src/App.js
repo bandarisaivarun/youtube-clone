@@ -12,6 +12,8 @@ class App extends React.Component{
     super(props);
     this.state={
          searchName:'',
+         responseVideos:[],
+         selectedVideo:null,
          err:null
     }
     this.searchQuery=this.searchQuery.bind(this);
@@ -21,37 +23,42 @@ class App extends React.Component{
     this.setState({searchName:resQuery});
     this.searchQuery(resQuery);
   }
-  searchQuery(result){
+  searchQuery=async(result)=>{
     console.log('searchQuery enterd');
       
       
-       const res=request.get(
+       const res=await request.get(
                'search',
                 { params:{
                    part:'snippet',
                    maxResults:5,
-                   //key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
-                   q:result
+                   key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
+                   q:result,
                }
            }    
             
-       )
-       .then(response => {return response;})
-       .catch(err=>{
-          return err;
-       })
-       console.log(res);
-       //console.log(this.state.err);
+       );
+       
+      
+       console.log(res.data.items);
+       this.setState({responseVideos:res.data.items,selectedVideo:res.data.items[0]});
+       
+       
+      
+
 }
 
   
    render() {
      console.log('app render');
+     console.log(this.state.responseVideos);
+     console.log(this.state.selectedVideo);
+     const {selectedVideo,responseVideos}=this.state;
     return(
        <Fragment>
             <Header search={this.searchBarResult}  /> 
             <hr />
-            <MainPage item={this.state.searchName}/>
+            <MainPage videos={responseVideos} selectedVideo={selectedVideo}/>
         </Fragment>
  
          

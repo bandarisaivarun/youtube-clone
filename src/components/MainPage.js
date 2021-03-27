@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col,Row} from 'reactstrap';
-import YoutubeFrameVideo from './YoutubeMainFrame';
+import YoutubeMainFrame from './YoutubeMainFrame';
 import YoutubeSearchList from './YoutubeSearchList';
 
 
@@ -9,6 +9,7 @@ class MainPage extends React.Component{
     
       render(){
         console.log('main render');
+        const {videos,selectedVideo}=this.props;
           return(
                 <div className="conatiner">
                 
@@ -18,10 +19,10 @@ class MainPage extends React.Component{
                        
                         <Row>
                         <Col lg={{size:7,offset:0}} md={{size:11,offset:0}} className="m-lg-3 m-md-3 m-sm-3" >
-                              <YoutubeFrameVideo ></YoutubeFrameVideo>
+                              <YoutubeMainFrame video={selectedVideo}></YoutubeMainFrame>
                         </Col>
                         <Col lg={4} md={11} className="m-lg-3 m-md-3 m-sm-3">
-                            <YoutubeSearchList  />
+                            <YoutubeSearchList videolists={videos}  />
                         </Col>
                         </Row>
                        

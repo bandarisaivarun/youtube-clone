@@ -7,7 +7,7 @@ import {FormControl} from 'react-bootstrap';
 
 class Header extends React.Component{
     constructor(props){
-        super(props);
+       super(props);
         this.state={
             searchItemName:''
         }
@@ -16,7 +16,7 @@ class Header extends React.Component{
     }
     
     searchInput=(event)=>{
-        //event.preventDefault();
+       //event.preventDefault();
         
         this.setState({searchItemName:event.target.value});
         // if(this.state.searchItemName!==''){
@@ -24,11 +24,11 @@ class Header extends React.Component{
         // }
     };
      onSubmitForm(event){
-         event.preventDefault();
+        event.preventDefault();
          console.log(this.state.searchItemName);
         
         this.props.search(this.state.searchItemName);
-         
+        
     }
       render(){
         console.log('header render');
@@ -43,9 +43,9 @@ class Header extends React.Component{
                  </Row>
             </div>
              
-            <div class="search-box col-lg-5 col-md-4 col-sm-6" >
+            <div class="search-box col-lg-5 col-md-4 col-sm-6 mt-3" >
                 <Form onSubmit={(values)=>this.onSubmitForm(values)}>
-                    <Row class="align-items-center mt-3">
+                    <Row className="align-items-center">
                         <Col lg={9} sm={9} xs={6} class="align-items-center"> 
                             <FormControl  onChange={this.searchInput} />   
                         </Col>  

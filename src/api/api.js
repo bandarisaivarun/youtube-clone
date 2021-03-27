@@ -7,7 +7,7 @@ export const request = axios.create({
             baseURL: 'https://www.googleapis.com/youtube/v3',
             
            
-        })
+        });
         // Now, you can use it like this -> request.get() or request.post()
      /* 
      timeout: 1000,
