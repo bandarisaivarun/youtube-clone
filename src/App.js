@@ -12,7 +12,7 @@ class App extends React.Component{
     super(props);
     this.state={
          searchName:'',
-         responseVideos:[],
+         responseVideos:null,
          selectedVideo:null,
          err:null
     }
@@ -41,7 +41,7 @@ class App extends React.Component{
        
       
        console.log(res.data.items);
-       this.setState({responseVideos:res.data.items,selectedVideo:res.data.items[0]});
+       this.setState({responseVideos:res.data.items,selectedVideo:res.data.items[1]});
        
        
       
@@ -50,9 +50,9 @@ class App extends React.Component{
 
   
    render() {
+
      console.log('app render');
      console.log(this.state.responseVideos);
-     console.log(this.state.selectedVideo);
      const {selectedVideo,responseVideos}=this.state;
     return(
        <Fragment>

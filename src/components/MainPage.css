@@ -50,11 +50,15 @@
     border: 0.1em solid;
 
 }
-.video-lists{
+/*.video-lists{
     border: 0.1em solid;
-}
+}*/
 
 .video-lists> div{
-  
-   width:50%;
+   width:100%;
+   
+   
 }
+/*.video-lists{
+    border:0.1em solid;
+}*/

@@ -15,14 +15,14 @@ class MainPage extends React.Component{
                 
 
                    
-                  <div class="body" >
+                  <div className="body" >
                        
                         <Row>
-                        <Col lg={{size:7,offset:0}} md={{size:11,offset:0}} className="m-lg-3 m-md-3 m-sm-3" >
+                        <Col lg={{size:6,offset:0}} md={{size:11,offset:0}} className="m-lg-3 m-md-3 m-sm-3" >
                               <YoutubeMainFrame video={selectedVideo}></YoutubeMainFrame>
                         </Col>
-                        <Col lg={4} md={11} className="m-lg-3 m-md-3 m-sm-3">
-                            <YoutubeSearchList videolists={videos}  />
+                        <Col lg={5} md={11} className="m-lg-3 m-md-3 m-sm-3">
+                            <YoutubeSearchList videoLists={videos}  />
                         </Col>
                         </Row>
                        

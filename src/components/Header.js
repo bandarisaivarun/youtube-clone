@@ -33,23 +33,23 @@ class Header extends React.Component{
       render(){
         console.log('header render');
           return(
-            <div class="header row">
+            <div className="header row">
 
                      
-            <div class="youtube-icon col-lg-4 col-md-3 col-sm-3">
+            <div className="youtube-icon col-lg-4 col-md-3 col-sm-3">
                 <Row>
-                    <span class="icon"><AiFillYoutube />
-                    </span><span class="icon-name mt-3">Youtube</span>
+                    <span className="icon"><AiFillYoutube />
+                    </span><span className="icon-name mt-3">Youtube</span>
                  </Row>
             </div>
              
-            <div class="search-box col-lg-5 col-md-4 col-sm-6 mt-3" >
+            <div className="search-box col-lg-5 col-md-4 col-sm-6 mt-3" >
                 <Form onSubmit={(values)=>this.onSubmitForm(values)}>
                     <Row className="align-items-center">
-                        <Col lg={9} sm={9} xs={6} class="align-items-center"> 
+                        <Col lg={9} sm={9} xs={6} className="align-items-center mr-0"> 
                             <FormControl  onChange={this.searchInput} />   
                         </Col>  
-                        <Button ><AiOutlineSearch/></Button>  
+                        <Button className="ml-0" ><AiOutlineSearch/></Button>  
                     </Row>
                 </Form>  
             </div>       
