@@ -5,10 +5,24 @@ import YoutubeSearchList from './YoutubeSearchList';
 
 
 class MainPage extends React.Component{
-    
+     state={
+        
+            videoid:'',
+             
+        
+     }
+
+      channelDetails=(videoId)=>{
+            console.log(videoId);
+            console.log('enterd channel details');
+            this.setState({videoid:videoId});
+            
+     }
     
       render(){
         console.log('main render');
+        console.log(this.state.videoid);
+       
         const {videos,selectedVideo}=this.props;
           return(
                 <div className="conatiner">
@@ -19,35 +33,16 @@ class MainPage extends React.Component{
                        
                         <Row>
                         <Col lg={{size:6,offset:0}} md={{size:11,offset:0}} className="m-lg-3 m-md-3 m-sm-3" >
-                              <YoutubeMainFrame video={selectedVideo}></YoutubeMainFrame>
+                              <YoutubeMainFrame videoLists={videos} videoclick={this.state.videoid} video={selectedVideo}></YoutubeMainFrame>
                         </Col>
                         <Col lg={5} md={11} className="m-lg-3 m-md-3 m-sm-3">
-                            <YoutubeSearchList videoLists={videos}  />
+                            <YoutubeSearchList  videoLists={videos} channelDetails={this.channelDetails}  />
                         </Col>
                         </Row>
                        
                         
                         
-                       {/* <div class="video-frame col-6">
-                            <iframe src="" width="100%" ></iframe>
-                        </div>
-                        <div class="video-lists col-6">
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                            <div>
-                                <iframe src="" ></iframe>
-                            </div>
-                        </div>*/}
+                       
                   </div>
                   
               </div>

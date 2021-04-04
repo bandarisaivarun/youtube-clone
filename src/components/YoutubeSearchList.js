@@ -1,7 +1,12 @@
 import React from 'react';
 import { Media } from 'reactstrap';
 
-function Result({videos}){
+function handleClick(e,{channelDetails}){
+    channelDetails(e.target.id);
+    //console.log(e.target.id);
+}
+
+function Result({videos,channelDetails}){
     console.log('youtubelist result method..');
     console.log(videos);
     if(!videos) return(<div>Loading...</div>);
@@ -11,13 +16,13 @@ function Result({videos}){
         return(
         <div>
             <Media className="d-flex mb-3" id={video.id.videoId} >
-                {/*<iframe title="youtube" src={videoSrc} scrolling='no' width='320' height='180' ></iframe>*/}
+                
                 <Media left >
-                    <iframe title="youtube" src={videoSrc} scrolling='no' width='320' height='180' ></iframe>
+                    <img src={videoSrc} id={video.id.videoId} alt="video lists" width='250' height='150' onClick={(e)=>handleClick(e,{channelDetails})} />
                 </Media>
                 <Media body className="ml-3">
                     {video.snippet.title}
-                    <Media heading>{video.snippet.channelTitle}</Media>
+                    <Media heading >{video.snippet.channelTitle}</Media>
                 </Media>
             </Media>
         </div>
@@ -28,7 +33,7 @@ function Result({videos}){
 
 
 
-const YoutubeSearchList =({videoLists})=>{
+const YoutubeSearchList =({videoLists,channelDetails})=>{
      
        
    
@@ -36,7 +41,7 @@ const YoutubeSearchList =({videoLists})=>{
          return(
              
             <div className="video-lists " >
-                <Result videos={videoLists}/>
+                <Result videos={videoLists} channelDetails={channelDetails}/>
             </div>
          )
      
