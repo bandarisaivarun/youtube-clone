@@ -18,10 +18,17 @@ class App extends React.Component{
     }
     this.searchQuery=this.searchQuery.bind(this);
     this.searchBarResult=this.searchBarResult.bind(this);
+    this.handlechanneldetails=this.handlechanneldetails.bind(this);
   }
   searchBarResult(resQuery){
     this.setState({searchName:resQuery});
     this.searchQuery(resQuery);
+  }
+  handlechanneldetails(videoId){
+      const {responseVideos}=this.state;
+      const result=responseVideos.filter(video=>{return videoId===video.id.videoId})[0];
+      console.log(result);
+      this.setState({selectedVideo:result});
   }
   searchQuery=async(result)=>{
     console.log('searchQuery enterd');
@@ -58,7 +65,7 @@ class App extends React.Component{
        <Fragment>
             <Header search={this.searchBarResult}  /> 
             <hr />
-            <MainPage videos={responseVideos} selectedVideo={selectedVideo}/>
+            <MainPage videos={responseVideos} selectedVideo={selectedVideo} handlechanneldetails={this.handlechanneldetails}/>
         </Fragment>
  
          

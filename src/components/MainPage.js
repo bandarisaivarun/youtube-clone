@@ -13,17 +13,21 @@ class MainPage extends React.Component{
      }
 
       channelDetails=(videoId)=>{
-            console.log(videoId);
-            console.log('enterd channel details');
-            this.setState({videoid:videoId});
+            // const {selectedVideo,videos}=this.props;
+            // console.log(videoId);
+            // console.log('enterd channel details');
+            // this.setState(selectedVideo);
+            this.props.handlechanneldetails(videoId);
+            
             
      }
     
       render(){
         console.log('main render');
         console.log(this.state.videoid);
-       
+        
         const {videos,selectedVideo}=this.props;
+        console.log(selectedVideo);
           return(
                 <div className="conatiner">
                 

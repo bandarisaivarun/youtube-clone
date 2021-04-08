@@ -19,24 +19,24 @@ const YoutubeMainFrame=({videoLists,video,videoclick})=>{
         const Videosrc=`https://www.youtube.com/embed/`;
         var Videosr='';
 
-        if(video && videoclick===''){
+        if(video){
              Videosr=Videosrc+`${video.id.videoId}`;
         }    
-        else{
-             Videosr=Videosrc+`${videoclick}`;
-        }
-
+        // else{
+        //      Videosr=Videosrc+`${videoclick}`;
+        // }
+        
       
         // if(!videoclick)
         // {
-        //      setvideodetails(video[0]);
+        //      setvideodetails(video);
         //      console.log(videodetail);
         // }
         // else{
         //     setvideodetails(videoLists.filter((video)=>{return video.id.videoId===videoclick}));
         //     console.log(videodetail);
         // }
-        console.log(videodetail);                  
+        // console.log(videodetail);                  
         
             return(
                 <div className="video-frame " style={{height:'auto'}}>
