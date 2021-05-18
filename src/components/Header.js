@@ -13,7 +13,9 @@ class Header extends React.Component{
         }
        this.onSubmitForm=this.onSubmitForm.bind(this);
        this.searchInput=this.searchInput.bind(this);
+       
     }
+  
     
     searchInput=(event)=>{
        //event.preventDefault();
@@ -33,23 +35,26 @@ class Header extends React.Component{
       render(){
         console.log('header render');
           return(
-            <div className="header row">
-
+        <div className="header row ">
+            
                      
             <div className="youtube-icon col-lg-4 col-md-3 col-sm-3">
-                <Row>
+                <Row style={{background:"white"}}>
                     <span className="icon"><AiFillYoutube />
                     </span><span className="icon-name mt-3">Youtube</span>
                  </Row>
             </div>
              
-            <div className="search-box col-lg-5 col-md-4 col-sm-6 mt-3" >
-                <Form onSubmit={(values)=>this.onSubmitForm(values)}>
-                    <Row className="align-items-center">
-                        <Col lg={9} sm={9} xs={6} className="align-items-center mr-0"> 
-                            <FormControl  onChange={this.searchInput} />   
+            <div className="search-box col-lg-5 col-md-5 col-sm-5 mt-3"  >
+                <Form onSubmit={(values)=>this.onSubmitForm(values)} >
+                    <Row className="align-items-center" style={{background:"white"}}>
+                        <Col lg={9} sm={9} xs={6} className="d-flex align-items-center mr-0" style={{background:"inherit"}}> 
+                        {/*   <input className="search" onChange={this.searchInput} />
+                            <Button className="search-button ml-0" style={{background:"inherit"}}><img className="searchbtn" src="./images/searchicon.png"  height="22px"/></Button>
+                        */}  <input class="searchinput" onChange={this.searchInput}  />
+                             <button className="search-btn" id="search-btn" style={{background:"inherit"}}><i class="fa fa-search"></i></button> 
                         </Col>  
-                        <Button className="ml-0" ><AiOutlineSearch/></Button>  
+                        
                     </Row>
                 </Form>  
             </div>       

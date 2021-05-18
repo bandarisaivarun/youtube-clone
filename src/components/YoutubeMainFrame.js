@@ -1,8 +1,12 @@
 import React,{useState} from 'react';
 import ResponsiveEmbed from 'react-bootstrap/ResponsiveEmbed';
+import LoadingSpin from './LoadingSpin';
+import {Card,CardBody} from 'reactstrap';
 
 
-const YoutubeMainFrame=({videoLists,video,videoclick})=>{
+
+
+const YoutubeMainFrame=({isLoading,video,videoclick,statisticsDetails})=>{
        /*
        -----about embed---
        to get information from any web page (using oembed, opengraph, 
@@ -10,48 +14,67 @@ const YoutubeMainFrame=({videoLists,video,videoclick})=>{
          any web service (youtube, vimeo, flickr, instagram, etc)
           and has adapters to some sites like (archive.org, github, facebook, etc).
        */
-      const [videodetail,setvideodetails]=useState('');
+     
       console.log('main frame entered');
       console.log(videoclick);
       console.log(video);
-        if(!video) return <div>Loding...</div>;
-        
-        const Videosrc=`https://www.youtube.com/embed/`;
+      console.log(statisticsDetails);
+      const Videosrc=`https://www.youtube.com/embed/`;
         var Videosr='';
+       if(isLoading){
+            return(
+                
+                    <Card  style={{height:"auto"}}>
+                        <ResponsiveEmbed aspectRatio="16by9" style={{background:"white"}}>
+                                <div className="loadingframe" style={{background:"white"}}>
+                                    <LoadingSpin/>
+                                </div>
+                        </ResponsiveEmbed>
+                        
+                       
+                        
+                    </Card>
+            
+                );
 
-        if(video){
-             Videosr=Videosrc+`${video.id.videoId}`;
-        }    
-        // else{
-        //      Videosr=Videosrc+`${videoclick}`;
-        // }
+       }
         
-      
-        // if(!videoclick)
-        // {
-        //      setvideodetails(video);
-        //      console.log(videodetail);
-        // }
-        // else{
-        //     setvideodetails(videoLists.filter((video)=>{return video.id.videoId===videoclick}));
-        //     console.log(videodetail);
-        // }
-        // console.log(videodetail);                  
+        else if(video && statisticsDetails){
+             Videosr=Videosrc+`${video.id.videoId}`;
+
+            
+                       
         
             return(
-                <div className="video-frame " style={{height:'auto'}}>
+                <Card className="video-frame shadow" style={{height:'auto'}}>
                     <ResponsiveEmbed aspectRatio="16by9">
                         <iframe title="none" src={Videosr} width="100%" ></iframe>
                     </ResponsiveEmbed>
-                    <div>
-                        <p>
+                    <div style={{background:"rgb(255,255,255)"}} >
+                        <p className="desc">
                            {video.snippet.title} 
                         </p>
+                        <div className="video-statistics d-flex">
+                            <div className="views d-flex mr-auto ">
+                                <span className="view-count">{statisticsDetails.statistics.viewCount}views</span>
+                            </div>
+                            <div className="like-dislike d-flex" style={{background:"rgb(255,255,255)"}}>
+                                <span className="like-count mr-3" ><i class="fa fa-thumbs-o-up pr-1" aria-hidden="true"></i>{statisticsDetails.statistics.likeCount}</span>
+                                <span className="dislike-count mr-3"><i class="fa fa-thumbs-o-down pr-1" aria-hidden="true"></i>{statisticsDetails.statistics.dislikeCount}</span>
+                            </div>
+                        </div>
                         <hr/>
-                        <span id='title'>{video.snippet.channelTitle}</span>
+                        <span className="title" >{video.snippet.channelTitle}</span>
+                        
                     </div>
-                </div>
+                </Card>
             )
+        }
+        else{
+            return(
+                <div></div>
+            );
+        }
         
     
 }
