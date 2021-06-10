@@ -1,3 +1,4 @@
+
 .header{
   height: 70px;
   display: flex;
@@ -15,6 +16,9 @@
 .header > *{
   background-color: inherit;
 }
+/* .App{
+  display: grid;
+} */
 .icon ,.icon > *,.icon-name,.youtube-icon{background-color:  rgb(255, 255, 255);}
 .search-box{
     left:50%;
@@ -70,6 +74,11 @@ button.search-btn{
     border-left: 0.01em solid rgb(197, 192, 201);
 
 }
+/* .trendy-videos{
+  overflow-y:scroll;
+  position: fixed;
+  
+} */
 /* input.searchinput:active,input.searchinput:focus,button.search-btn:active{
   outline: 0;
   border: transparent;
