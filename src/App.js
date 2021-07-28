@@ -1,209 +1,128 @@
 
 import React,{Fragment} from 'react';
-import MainPage from './components/MainPage';
+
 import'bootstrap/dist/css/bootstrap.css';
 import Header from './components/Header';
-import './components/MainPage.css';
-import Home from './components/Home';
-import ToggleBarItems from './components/ToggleBarItems';
-import {request} from './api/api';
-import axios from 'axios';
+import Home from './components/HomeComponent';
+import ToggleComponent from './components/ToggleComponent';
+import { Mainpage } from './components/MainpageComponent';
+import { Subscription } from './components/SubscriptionComponent';
+import { Login } from "./components/LoginComponent";
+import {ProtectedRoute} from './components/ProtectedRoute';
+import {Playlist} from './components/PlaylistComponent';
+import { Channel } from "./components/ChannelComponent";
+//import { ErrorBoundary } from './components/Demo2';
+
 // import fetch from 'cross-fetch';
 import './App.css';
 
 import {  Redirect, Route,Switch } from 'react-router';
 import { Link,withRouter } from 'react-router-dom';
+import { playlist } from './Hooks/CustomHooks';
 
 class App extends React.Component{
+   constructor(props){
+     super(props);
+     this.state={
+       isToggleBarOpen:false,
+       isSignedIn:null,
+       isAuthorized:null,
+     }
+   }
+ 
+ 
+ 
+  toggleMethod=()=>{
+
+    this.setState({isToggleBarOpen:!this.state.isToggleBarOpen});
   
-  constructor(props){
-    super(props);
-    this.state={
-         searchName:'',
-         responseVideos:null,
-         selectedVideo:null,
-         videoStatisticsdetails:null,
-         err:null,
-         isLoading:'',
-         trendingVideosList:null,
-         isShow:false,
-         comments:[]
-    }
-    this.searchQuery=this.searchQuery.bind(this);
-    this.searchBarResult=this.searchBarResult.bind(this);
-    this.handlechanneldetails=this.handlechanneldetails.bind(this);
-    this.selectedVideoSatistics=this.selectedVideoSatistics.bind(this);
-    this.TrendingVideos=this.TrendingVideos.bind(this);
-    this.tVideoClick=this.tVideoClick.bind(this);
-    this.toggleMethod=this.toggleMethod.bind(this);
   }
-  toggleMethod(){
-      this.setState({isShow:!this.state.isShow});
+  SignedInUpdate=()=>{
+    this.setState({isSignedIn:!this.state.isSignedIn});
   }
-  TrendingVideos(videos){
-     console.log('trending method entered');
-      this.setState({trendingVideosList:videos});
-  }
-  tVideoClick(video){
 
-    console.log('tVideoClick');
-    console.log(video);
-    console.log(video.id.videoId);
-    this.selectedVideoSatistics(video.id);
-    this.setState({selectedVideo:video});
-    this.searchQuery(video.id);
-    this.props.history.push("/mainpage");
-
+  setAuthorizedrequest=async()=>{
+    console.log('Authorizedrequest method entered');
+    const AuthInstance=window.gapi.auth2.getAuthInstance()
+    const SCOPE='https://www.googleapis.com/auth/youtube.readonly';
+    var user=AuthInstance.currentUser.get();
+    console.log(user);
   }
-  searchBarResult(resQuery){
-    
-    this.setState({selectedVideo:null,searchName:resQuery});
-    this.searchQuery(resQuery);
-  }
-  handlechanneldetails(videoId){
-      const {responseVideos}=this.state;
-    
 
-      const  result=responseVideos.filter(video=>{return videoId===video.id.videoId})[0];
-      
-      
-        console.log(result);
-        this.setState({selectedVideo:result});
-        this.selectedVideoSatistics(result.id.videoId);
-     
-      
-  }
-  selectedVideoSatistics=async(videoid)=>{
-     console.log('statistics entered');
-     console.log(videoid);
-      if(videoid !==null){
-        
-         const response=await axios.get('https://www.googleapis.com/youtube/v3/videos',{
-           params:{
-              id:`${videoid}`,
-              key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
-              part:'snippet,statistics'
-             
-             
-           }
-         });
-         console.log('statistic middle');
-         let res=await response.data.items[0];
-        console.log(res);
-        const result=await axios.get('https://www.googleapis.com/youtube/v3/commentThreads',{
-          params:{
-            part:'snippet,replies',
-            key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
-            videoId:`${videoid}`
-
-          }
-        });
-        console.log(result);
-        let commentres=await result.data;
-        console.log(commentres);
-        this.setState({ videoStatisticsdetails:res,comments:commentres});
-        console.log('statistic end..');
-    
-        
-        
-         
-      }
-  }
-  searchQuery=async(result)=>{
-    console.log('searchQuery enterd');
-   
-      
-      this.setState({isLoading:true});
-      
-       const res=await request.get(
-               'search',
-                { 
-                  params:{
-                  part:'snippet',
-                  maxResults:5,
-                   key:'AIzaSyCa_VQeR8xS-jjUPnGXbDbRYcic859qeC0',
-                   q:result,
-               }
-           }    
-            
-       );
-       
-      
-      console.log(res.data.items);
-      if(this.state.selectedVideo==null){
-          await this.selectedVideoSatistics(res.data.items[0].id.videoId);
-          console.log('search query middle');
-          this.setState({responseVideos:res.data.items,
-          selectedVideo:res.data.items[1]});
-       }
-      else{
-        this.setState({responseVideos:res.data.items});
-      }
-        
-
-      this.setState({isLoading:false});    
-        
-       
-       
-       
-      
-
+  initializeGoogleSignIn=()=>{
+    window.gapi.load('auth2',()=>{
+        window.gapi.auth2.init({
+          
+            clientId:'403730852482-u5sgud6a6elds8vfc8hkovad4d2va90v.apps.googleusercontent.com',
+            discoveryDocs:'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest',
+            scope:'https://www.googleapis.com/auth/youtube.readonly'
+        }).then(()=>{
+            const AuthInstance=window.gapi.auth2.getAuthInstance()
+            const isSigned=AuthInstance.isSignedIn.get();
+            console.log('componentDidMount signin value:',isSigned);
+            this.setState({isSignedIn:isSigned})
+            AuthInstance.isSignedIn.listen((isSignedIn)=>{
+              //console.log(isSignedIn);
+                this.setState({isSignedIn});
+            });
+            var signin=AuthInstance.isSignedIn.get()
+            if(signin){
+              this.setAuthorizedrequest()
+            }   
+        })
+    })
 }
 
- 
+componentDidMount(){
+    console.log('cpmponent entered')
+    const script=window.document.createElement('script');
+    script.src='https://apis.google.com/js/platform.js';
+    script.onload=()=>this.initializeGoogleSignIn()
+    window.document.body.appendChild(script);
+    
+}
+
 
   
-   render(){
-   const mainpage=()=>(<MainPage 
-        videos={responseVideos} selectedVideo={selectedVideo}
-         statisticsDetails={videoStatisticsdetails} 
-         handlechanneldetails={this.handlechanneldetails} isLoading={isLoading}
-         comments={comments}/>
-         );
-       
-
-     console.log('app render');
-     console.log(this.state.selectedVideo);
-     console.log(this.state.videoStatisticsdetails);
-     console.log(this.state.responseVideos);
-     
-     const {selectedVideo,responseVideos,
-      isLoading,videoStatisticsdetails,
-      trendingVideosList,err,isShow,comments}=this.state;
-    if(err!=null){
-      return(<div>{err}</div>);
-    }
-    else{
-    
+   render(){ 
+       const {isToggleBarOpen}=this.state;
+       console.log('App entered');
+       console.log('signIn:',this.state.isSignedIn);
       return(
         <Fragment>
-            <div>
-              <Header search={this.searchBarResult} toggleMethod={this.toggleMethod} /> 
-             
-              <div className="d-flex App">
-                <div >
-                  <ToggleBarItems isShow={isShow} />
-                </div>
-                <div>
-                  <Switch >
-                  
-                      <Route path="/Home"  ><Home TrendingVideos={this.TrendingVideos} trendingVideosList={trendingVideosList} tVideoClick={this.tVideoClick}/></Route>
-                      
-                      <Route path="/mainpage/:name" component={mainpage} />
-                      <Redirect from="*" to="/Home" component={Home} />
-                  
-                    
-                  </Switch>
-                </div>
+            <Header toggleMethod={this.toggleMethod} SignedInUpdate={this.SignedInUpdate} isSignedIn={this.state.isSignedIn} />
+            <div className="main-section">
+              <div className="toggle-div" style={{maxWidth:"200px"}}>
+                <ToggleComponent isOpen={isToggleBarOpen} />
+              </div>
+              <div className="content-section">
+                <Switch>
+                  <Route path="/Home"><Home/></Route>
+                  <Route path="/mainpage/:name"><Mainpage/></Route>
+                  <ProtectedRoute path="/subscription" isSignedIn={this.state.isSignedIn}>
+                    <Subscription/>
+                  </ProtectedRoute>
+                  <ProtectedRoute path="/playlist" isSignedIn={this.state.isSignedIn}>
+                    <Playlist />
+                  </ProtectedRoute>
+                  <ProtectedRoute path="/channel/:channelId" isSignedIn={this.state.isSignedIn}>
+                    <Channel />
+                  </ProtectedRoute>
+                  <Route path="/login" ><Login isSignedIn={this.state.isSignedIn} /></Route>
+
+                  <Redirect from="*" to="/Home" />
+                </Switch>
               </div>
             </div>
-          </Fragment>
+            
+
+        </Fragment>
   
           
       )
     }
   }
-}
 
 
-export default withRouter(App);
+
+export default App;

@@ -1,0 +1,50 @@
+ .playlist{
+    margin: 0;
+    padding: 0;
+}
+.playlist-content{
+    margin: 6em;
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    /* margin-right: auto; */
+   /* border: solid;*/
+}
+
+.playlist>div:first-child{
+    width:50%;
+    border: solid;
+    margin: 6em;
+    margin-bottom: 1.2em;
+}
+.playlist-title{
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+    margin-left: 0.2em;
+    border: solid pink;
+   
+}
+
+.playlist-item{
+    border: solid;
+    margin-bottom: 1em;
+    margin-right: 2em;
+   
+}
+.listitem-content> span> img{
+    /* display: flex; */
+    width:280px
+}
+.listitem-content > div{
+    margin-left: 0.5em;
+}
+.listitem-content >div>span:first-child{
+    font-size: 1rem;
+    font-family:  sans-serif,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+}
+.listitem-content>div>span:last-child{
+    font-size: 0.8rem;
+}

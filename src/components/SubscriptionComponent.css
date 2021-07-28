@@ -1,0 +1,57 @@
+.subscription-title{
+    font-size: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 1em;
+}
+.subscription{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.subscription-content{
+    margin: 1.5em;
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+.channel{
+    border:solid;
+    margin-bottom: 1em;
+    margin-left: 2em;
+    height:200px;
+}
+.channel-content{
+    display: flex;
+    width:60%;
+    border: solid green;
+    
+}
+.channel-content >div.image{
+ 
+    border: solid pink;
+}
+
+.image >img{
+    border-radius: 100%;
+    width:160px;   
+    height: 170px;
+}
+.subscribed-details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5em;
+}
+.subscribed-details > .desc{
+
+   border: solid;
+  overflow: hidden;
+  height: 3em;
+ /* text-overflow: ellipsis; */
+}
+
+.subscribed-details > span:last-child{
+    margin-top: 0.5em;
+    font-weight: 500;
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

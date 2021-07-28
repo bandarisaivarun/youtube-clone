@@ -16,6 +16,8 @@ $width: 100px;
     display: block;
     padding-top: 100%;
   }
+  top:50%;
+  transform: translateY(-55%);
   
 }
 
@@ -77,10 +79,7 @@ $width: 100px;
   }
 }
 
-// demo-specific
-body {
-  background-color: $white;
-}
+
 .showbox {
   position: absolute;
   top: 0;
@@ -89,3 +88,9 @@ body {
   right: 0;
   padding: 5%;
 }
+
+
+// // demo-specific
+// body {
+//   background-color: $white;
+// }

@@ -1,0 +1,56 @@
+.mainpage{
+    margin-top: 1em;
+    padding: 0;
+    /* width: 100%; */
+     /* height: 90vh; 
+    overflow-x: hidden;
+    overflow-y: scroll */
+      
+}
+
+.mainpage-content{
+     margin:1em;
+     margin-left: 0;
+    width:100%;
+    /* border: yellow solid; */
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
+}
+.main-frame{
+     margin-left: 1.2em; 
+    margin-bottom: 0.5em;
+    margin-right:1.6em;
+}
+.search-list{
+    margin-left: 1.2em;
+    margin-right: 1.6em;
+}
+
+@media screen and (min-width:991px) {
+    .mainpage{
+        margin: 0;
+        padding: 0;
+       
+         height: 90vh; 
+      
+        /* border: solid red; */
+    }
+    .mainpage-content{
+        margin:1.5em;
+        width:97%;
+        display: flex;
+        justify-content:space-between;
+        /* border: solid green; */
+    }
+    .main-frame{
+        margin: 0;
+        width:60%;
+        
+    } 
+    .search-list{
+        width:35%;
+        margin-right: 2em; 
+        
+    }
+}
+

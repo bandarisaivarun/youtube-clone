@@ -1,0 +1,27 @@
+.channelPage{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+.channelPage-content{
+   margin: 0.5em; 
+}
+.banner-section{
+    margin-top: -300px;
+    
+    width:100%;
+    border: solid;
+
+}
+.banner-section > img{
+    width:100%;
+   
+    
+}
+.channel-header>div:last-child{
+    margin-top: -300px; /*-170px;https://yt3.ggpht.com/786_WwcCDrpoM27QlKVJP4FKLiEr3HoDLdxfdQ86-0rUpprkcLkhBg0PLw3321tZrXE8NaZ1Gg*/
+    width:100%;
+   position: relative;
+    background: white;
+    border: red solid;
+}
